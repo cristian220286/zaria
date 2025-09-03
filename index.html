@@ -3,40 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sasi Zaria</title>
+    <title>Zaria</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
-        .card { background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); padding: 1.5rem; margin-bottom: 1.5rem; }
-        .table-header th { padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem; font-weight: 600; color: #4b5563; text-transform: uppercase; letter-spacing: 0.05em; background-color: #f9fafb; position: sticky; top: 0; z-index: 10; }
-        .table-cell { padding: 0.75rem 1rem; font-size: 0.875rem; color: #1f2937; border-bottom: 1px solid #e5e7eb; white-space: nowrap; }
+        /* Paleta de Colores Pastel Femenina y Profesional */
+        :root {
+            --bg-main: #FDF8FA;      /* Rosa muy claro */
+            --bg-card: #FFFFFF;
+            --primary: #EAB3A8;      /* Rosa pastel principal */
+            --primary-hover: #D69A8F; /* Rosa pastel más oscuro */
+            --secondary: #E5E7EB;
+            --secondary-hover: #D1D5DB;
+            --text-dark: #4B4B4B;    /* Gris oscuro suave */
+            --text-light: #6B7280;
+            --border-color: #F3E8EB;
+            --danger: #FCA5A5;       /* Rojo coral suave */
+            --danger-hover: #EF4444;
+            --success: #A7F3D0;      /* Menta */
+            --warning: #FDE68A;      /* Amarillo pastel */
+            --info: #A5B4FC;       /* Lavanda */
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-dark); }
+        .card { background-color: var(--bg-card); border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid var(--border-color); }
+        .table-header th { padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; background-color: var(--bg-main); position: sticky; top: 0; z-index: 10; }
+        .table-cell { padding: 0.75rem 1rem; font-size: 0.875rem; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
         .badge { display: inline-block; padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 600; border-radius: 9999px; }
-        .badge-faltante { background-color: #fee2e2; color: #b91c1c; }
-        .badge-sobrante { background-color: #dcfce7; color: #166534; }
-        .badge-cuadrado { background-color: #e0e7ff; color: #3730a3; }
-        .badge-pendiente { background-color: #fef3c7; color: #92400e; }
+        .badge-faltante { background-color: var(--danger); color: #B91C1C; }
+        .badge-sobrante { background-color: var(--success); color: #065F46; }
+        .badge-cuadrado { background-color: var(--info); color: #3730A3; }
+        .badge-pendiente { background-color: var(--warning); color: #92400E; }
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s; cursor: pointer; border: 1px solid transparent; }
-        .btn:disabled { background-color: #d1d5db; cursor: not-allowed; }
-        .btn-primary { background-color: #4f46e5; color: white; }
-        .btn-primary:hover:not(:disabled) { background-color: #4338ca; }
-        .btn-danger { background-color: #dc2626; color: white; }
-        .btn-danger:hover:not(:disabled) { background-color: #b91c1c; }
-        .btn-secondary { background-color: #e5e7eb; color: #374151; }
-        .btn-secondary:hover:not(:disabled) { background-color: #d1d5db; }
-        .input-field { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 0.375rem; transition: border-color 0.2s, box-shadow 0.2s; }
-        .input-field:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 2px #c7d2fe; }
+        .btn:disabled { background-color: #D1D5DB; cursor: not-allowed; opacity: 0.6; }
+        .btn-primary { background-color: var(--primary); color: white; }
+        .btn-primary:hover:not(:disabled) { background-color: var(--primary-hover); }
+        .btn-danger { background-color: var(--danger); color: #B91C1C; }
+        .btn-danger:hover:not(:disabled) { background-color: var(--danger-hover); color: white; }
+        .btn-secondary { background-color: var(--secondary); color: #374151; }
+        .btn-secondary:hover:not(:disabled) { background-color: var(--secondary-hover); }
+        .input-field { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid var(--border-color); border-radius: 0.375rem; transition: border-color 0.2s, box-shadow 0.2s; background-color: #fff; }
+        .input-field:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px #FBCFE8; }
+        .input-field.invalid { border-color: var(--danger); box-shadow: 0 0 0 2px #FECACA; }
         .modal { display: none; position: fixed; z-index: 50; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); justify-content: center; align-items: center; }
         .modal-content { background-color: #fefefe; margin: auto; padding: 20px; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); width: 90%; max-width: 1024px; text-align: left; }
-        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
-        .close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
-        #auth-section { display: flex; flex-direction: column; gap: 1rem; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); max-width: 400px; margin: 50px auto; }
+        #auth-section { display: flex; flex-direction: column; gap: 1rem; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.05); max-width: 400px; margin: 50px auto; }
         #app-content { display: none; }
         #toast { visibility: hidden; min-width: 250px; margin-left: -125px; background-color: #333; color: #fff; text-align: center; border-radius: 0.5rem; padding: 16px; position: fixed; z-index: 100; left: 50%; bottom: 30px; font-size: 17px; }
         #toast.show { visibility: visible; -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-        #toast.error { background-color: #dc2626; }
-        #toast.success { background-color: #16a34a; }
+        #toast.error { background-color: var(--danger); color: #B91C1C; }
+        #toast.success { background-color: var(--success); color: #065F46; }
         @-webkit-keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @-webkit-keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
@@ -51,18 +68,16 @@
         <div class="modal-content">
             <span class="close-button" id="close-admin-log">&times;</span>
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold text-gray-800">Log de Movimientos de Auditoría</h2>
+                <h2 class="text-2xl font-bold">Log de Movimientos de Auditoría</h2>
                 <button id="btn-limpiar-log" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Limpiar Log</button>
             </div>
             <div class="mb-4">
-                <label for="log-date-picker" class="block text-sm font-medium text-gray-700 mb-1">Filtrar por Fecha:</label>
+                <label for="log-date-picker" class="block text-sm font-medium mb-1">Filtrar por Fecha:</label>
                 <input type="date" id="log-date-picker" class="input-field w-full max-w-xs">
             </div>
             <div class="overflow-x-auto max-h-[70vh]">
                 <table class="w-full">
-                    <thead class="table-header">
-                        <tr><th>Fecha y Hora</th><th>Tipo</th><th>SKU</th><th>Cantidad</th><th>Responsable</th><th>Detalle</th></tr>
-                    </thead>
+                    <thead class="table-header"><tr><th>Fecha y Hora</th><th>Tipo</th><th>SKU</th><th>Cantidad</th><th>Responsable</th><th>Detalle</th></tr></thead>
                     <tbody id="admin-log-body"></tbody>
                 </table>
             </div>
@@ -72,75 +87,77 @@
     <main class="flex-grow">
         <div class="max-w-screen-2xl mx-auto">
             <header class="mb-6 flex flex-wrap justify-between items-center gap-4">
-                <div><h1 class="text-3xl font-bold text-gray-800">Sasi Zaria</h1></div>
+                <div><h1 class="text-3xl font-bold">Sasi Smart Group PPS</h1></div>
                 <div class="flex items-center gap-4">
-                    <div class="text-gray-600">Usuario: <span id="user-id-display" class="font-semibold text-indigo-700">Cargando...</span></div>
+                    <div class="text-gray-600">Usuario: <span id="user-id-display" class="font-semibold" style="color: var(--primary-hover);">Cargando...</span></div>
                     <div class="text-gray-600">Contador: <span id="contador-display" class="font-semibold text-teal-700">N/A</span></div>
-                    <button id="btn-limpiar-datos" class="btn btn-danger"><i class="fa-solid fa-bomb"></i>Limpiar Datos Operativos</button>
+                    <button id="btn-limpiar-datos" class="btn btn-danger"><i class="fa-solid fa-bomb"></i>Limpiar Datos</button>
                     <button id="btn-logout" class="btn btn-secondary"><i class="fa-solid fa-right-from-bracket"></i>Salir</button>
                 </div>
             </header>
 
             <div id="auth-section">
-                <h2 class="text-2xl font-bold text-center text-gray-700">Iniciar Sesión</h2>
-                <input type="email" id="auth-email" class="input-field" placeholder="Correo Electrónico" required>
+                <h2 class="text-2xl font-bold text-center">Iniciar Sesión</h2>
+                <p class="text-sm text-gray-500 text-center">Usa un email (puede ser inventado) para crear o acceder a tu espacio de trabajo.</p>
+                <input type="email" id="auth-email" class="input-field" placeholder="Email del espacio de trabajo" required>
                 <input type="password" id="auth-password" class="input-field" placeholder="Contraseña" required>
-                <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
-                <button id="btn-register" class="btn btn-secondary">Registrarse</button>
-                <p class="text-sm text-gray-500 text-center mt-2">Si no tienes cuenta, se creará una al registrarte.</p>
+                <button id="btn-login" class="btn btn-primary w-full">Iniciar Sesión</button>
+                <button id="btn-register" class="btn btn-secondary w-full">Crear Nuevo Espacio</button>
             </div>
 
             <div id="app-content">
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-                    <div class="card"><h2 class="text-xl font-semibold mb-4 text-gray-700">1. Sesión de Conteo</h2><div class="space-y-4"><input type="text" id="contador-nombre" class="input-field" placeholder="Nombre de quien cuenta"><button id="btn-guardar-contador" class="btn btn-primary w-full bg-teal-600 hover:bg-teal-700"><i class="fa-solid fa-user-check"></i>Fijar Nombre</button></div></div>
-                    <div class="card"><h2 class="text-xl font-semibold mb-4 text-gray-700">2. Cargar Catálogo (CSV)</h2><input type="file" id="csv-file-input" accept=".csv" class="input-field file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"><p id="csv-helper" class="text-sm text-gray-500 mt-2">Formato: SKU, Stock</p></div>
-                    <div class="card"><h2 class="text-xl font-semibold mb-4 text-gray-700">3. Registrar Venta</h2><form id="form-ventas"><div class="space-y-4"><input type="text" id="venta-sku" class="input-field" placeholder="SKU del Producto" required><input type="number" id="venta-cantidad" class="input-field" placeholder="Cantidad Vendida" required min="1"><button type="submit" class="btn btn-primary w-full"><i class="fa-solid fa-cart-shopping"></i>Registrar</button></div></form></div>
-                    <div class="card"><h2 class="text-xl font-semibold mb-4 text-gray-700">4. Añadir a Conteo Físico</h2><form id="form-conteo"><div class="space-y-4"><input type="text" id="conteo-sku" class="input-field" placeholder="SKU del Producto" required><input type="number" id="conteo-cantidad" class="input-field" placeholder="Cantidad a AÑADIR" required min="1"><button type="submit" class="btn btn-primary w-full"><i class="fa-solid fa-plus"></i>Añadir</button></div></form></div>
+                    <div class="card"><h2 class="text-xl font-semibold mb-4">1. Sesión de Conteo</h2><div class="space-y-4"><input type="text" id="contador-nombre" class="input-field" placeholder="Nombre de quien cuenta"><button id="btn-guardar-contador" class="btn btn-primary w-full"><i class="fa-solid fa-user-check"></i>Fijar Nombre</button></div></div>
+                    <div class="card"><h2 class="text-xl font-semibold mb-4">2. Cargar Catálogo (CSV)</h2><input type="file" id="csv-file-input" accept=".csv" class="input-field file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100"><p class="text-sm text-gray-500 mt-2">Formato: SKU,Stock</p></div>
+                    <div class="card"><h2 class="text-xl font-semibold mb-4">3. Registrar Venta</h2><form id="form-ventas"><div class="space-y-4"><input type="text" id="venta-sku" class="input-field sku-input" placeholder="SKU del Producto" required><div class="text-xs text-red-400 hidden sku-warning">¡Ojo! Los códigos no llevan espacios.</div><input type="number" id="venta-cantidad" class="input-field" placeholder="Cantidad Vendida" required min="1"><button type="submit" class="btn btn-primary w-full"><i class="fa-solid fa-cart-shopping"></i>Registrar</button></div></form></div>
+                    <div class="card"><h2 class="text-xl font-semibold mb-4">4. Añadir a Conteo Físico</h2><form id="form-conteo"><div class="space-y-4"><input type="text" id="conteo-sku" class="input-field sku-input" placeholder="SKU del Producto" required><div class="text-xs text-red-400 hidden sku-warning">¡Ojo! Los códigos no llevan espacios.</div><input type="number" id="conteo-cantidad" class="input-field" placeholder="Cantidad a AÑADIR" required min="1"><button type="submit" class="btn btn-primary w-full"><i class="fa-solid fa-plus"></i>Añadir</button></div></form></div>
                 </div>
 
-                <div class="card border-2 border-rose-400 bg-rose-50 mb-8">
-                    <h2 class="text-xl font-semibold mb-4 text-rose-800"><i class="fa-solid fa-user-shield"></i> Operaciones de Administrador</h2>
+                <div class="card border-2" style="border-color: var(--primary);" >
+                    <h2 class="text-xl font-semibold mb-4"><i class="fa-solid fa-user-shield"></i> Operaciones de Administrador</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6">
                         <form id="form-correccion-admin">
-                            <h3 class="font-semibold text-lg mb-2 text-amber-800"><i class="fa-solid fa-pen-to-square"></i> Corregir Stock Físico</h3>
+                            <h3 class="font-semibold text-lg mb-2"><i class="fa-solid fa-pen-to-square"></i> Corregir Stock Físico</h3>
                             <div class="space-y-3">
-                                <input type="text" id="correc-sku" class="input-field" placeholder="SKU a corregir" required>
+                                <input type="text" id="correc-sku" class="input-field sku-input" placeholder="SKU a corregir" required>
+                                <div class="text-xs text-red-400 hidden sku-warning">¡Ojo! Los códigos no llevan espacios.</div>
                                 <input type="number" id="correc-cantidad" class="input-field" placeholder="Nuevo Stock Físico TOTAL" required min="0">
                                 <input type="text" id="correc-nombre-admin" class="input-field" placeholder="Su Nombre para auditoría" required>
-                                <button type="submit" class="btn btn-primary w-full bg-amber-600 hover:bg-amber-700">Corregir</button>
+                                <button type="submit" class="btn btn-primary w-full">Corregir</button>
                             </div>
                         </form>
                          <form id="form-anulacion">
-                            <h3 class="font-semibold text-lg mb-2 text-red-800"><i class="fa-solid fa-undo"></i> Anular Venta</h3>
+                            <h3 class="font-semibold text-lg mb-2"><i class="fa-solid fa-undo"></i> Anular Venta</h3>
                             <div class="space-y-3">
-                                <input type="text" id="anular-sku" class="input-field" placeholder="SKU de la venta a anular" required>
+                                <input type="text" id="anular-sku" class="input-field sku-input" placeholder="SKU de la venta a anular" required>
+                                <div class="text-xs text-red-400 hidden sku-warning">¡Ojo! Los códigos no llevan espacios.</div>
                                 <input type="number" id="anular-cantidad" class="input-field" placeholder="Cantidad a anular" required min="1">
                                 <input type="text" id="anular-nombre-admin" class="input-field" placeholder="Su Nombre para auditoría" required>
-                                <button type="submit" class="btn btn-primary w-full bg-rose-600 hover:bg-rose-700">Anular</button>
+                                <button type="submit" class="btn btn-primary w-full">Anular</button>
                             </div>
                         </form>
                         <form id="form-reposicion-csv">
-                            <h3 class="font-semibold text-lg mb-2 text-sky-800"><i class="fa-solid fa-truck-ramp-box"></i> Reponer Stock (CSV)</h3>
+                            <h3 class="font-semibold text-lg mb-2"><i class="fa-solid fa-truck-ramp-box"></i> Reponer Stock (CSV)</h3>
                             <div class="space-y-3">
-                                <input type="file" id="repo-csv-input" accept=".csv" class="input-field file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100" required>
+                                <input type="file" id="repo-csv-input" accept=".csv" class="input-field file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100" required>
                                 <input type="text" id="repo-nombre-admin" class="input-field" placeholder="Su Nombre para auditoría" required>
                                 <p class="text-xs text-gray-500 mt-1">Formato: SKU, Cantidad</p>
-                                <button type="submit" class="btn btn-primary w-full bg-sky-600 hover:bg-sky-700"><i class="fa-solid fa-dolly"></i>Cargar Reposición</button>
+                                <button type="submit" class="btn btn-primary w-full"><i class="fa-solid fa-dolly"></i>Cargar Reposición</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-8">
                     <div class="card xl:col-span-2">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Últimos 10 Movimientos Totales</h2>
+                        <h2 class="text-2xl font-bold mb-4">Últimos 10 Movimientos</h2>
                         <div class="overflow-x-auto max-h-[250px]"><table class="w-full"><thead class="table-header"><tr><th>Tipo</th><th>SKU</th><th>Cantidad</th><th>Responsable</th><th>Fecha y Hora</th></tr></thead><tbody id="last-movements-body"></tbody></table></div>
                     </div>
-                    <div class="card bg-gray-800 text-white"><h2 class="text-xl font-semibold mb-4"><i class="fa-solid fa-book"></i> Log de Auditoría</h2><p class="text-gray-400 mb-4">Ver todos los movimientos registrados.</p><button id="btn-abrir-log-admin" class="btn btn-primary w-full bg-gray-600 hover:bg-gray-700">Abrir Log</button></div>
+                    <div class="card"><h2 class="text-xl font-semibold mb-4"><i class="fa-solid fa-book"></i> Log de Auditoría</h2><p class="text-gray-400 mb-4">Ver todos los movimientos registrados.</p><button id="btn-abrir-log-admin" class="btn btn-secondary w-full">Abrir Log</button></div>
                 </div>
 
                 <div class="card mt-6">
-                    <div class="flex justify-between items-center mb-4 gap-4 flex-wrap"><h2 class="text-2xl font-bold text-gray-800">Dashboard de Reconciliación</h2><div class="flex gap-4 items-center"><input type="text" id="search-input" placeholder="Buscar por SKU..." class="input-field w-full max-w-xs"><button id="btn-descargar-csv" class="btn btn-secondary"><i class="fa-solid fa-file-csv"></i>Descargar CSV</button></div></div>
+                    <div class="flex justify-between items-center mb-4 gap-4 flex-wrap"><h2 class="text-2xl font-bold">Dashboard de Reconciliación</h2><div class="flex gap-4 items-center"><input type="text" id="search-input" placeholder="Buscar por SKU..." class="input-field w-full max-w-xs"><button id="btn-descargar-csv" class="btn btn-secondary"><i class="fa-solid fa-file-csv"></i>Descargar CSV</button></div></div>
                     <div class="overflow-x-auto max-h-[65vh]"><table class="w-full"><thead class="table-header"><tr><th>Prioridad</th><th>SKU</th><th>Estado</th><th>Stock Final</th><th>Dif. Conteo</th><th>Físico Contado</th><th>Stock Teórico</th><th>Total Vendido</th><th>Contado por</th><th>Fecha Ing. Teórico</th><th>Fecha Últ. Repo.</th><th>Fecha Conteo</th><th>Fecha Venta</th></tr></thead><tbody id="dashboard-body"></tbody></table></div>
                 </div>
             </div>
@@ -150,6 +167,7 @@
     <footer class="text-center p-4 text-gray-500 text-sm mt-auto"><p>By Mor</p></footer>
 
     <script type="module">
+        // --- CONFIGURACIÓN E INICIALIZACIÓN DE FIREBASE ---
         const firebaseConfig = {
             apiKey: "AIzaSyAzGc3KVQFYIoQ7W_WZAj585AbUpiU5HUI",
             authDomain: "sasi-alfa-store-pps.firebaseapp.com",
@@ -158,708 +176,952 @@
             messagingSenderId: "739926676625",
             appId: "1:739926676625:web:b4ff509e304f980ff71b30"
         };
-
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, collection, onSnapshot, setDoc, addDoc, query, orderBy, serverTimestamp, writeBatch, getDocs, getDoc, where, updateDoc, deleteDoc, limit } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
+        import { getFirestore, doc, collection, onSnapshot, setDoc, addDoc, query, orderBy, serverTimestamp, writeBatch, getDocs, getDoc, where, updateDoc, runTransaction, limit } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
         
-        const BUSINESS_ID = 'Sasi Zaria'; 
-        const getAdminPassword = () => '10234567';
-        const getLogPassword = () => 'P1CL3S';
+        // --- CONSTANTES GLOBALES Y DE CONFIGURACIÓN ---
+        let BUSINESS_ID = null; 
+        const ADMIN_PASSWORD = '10234567';
+        const LOG_PASSWORD = 'Acces0r10s@lf@';
 
-        let stockTeorico = [], datosVentas = [], datosConteo = [], auditLog = [];
+        // --- ESTADO DE LA APLICACIÓN ---
+        let theoreticalStock = [], salesData = [], countData = [], auditLog = [];
         let userId = null, userEmail = null;
-        let nombreContador = localStorage.getItem(`${BUSINESS_ID}_nombreContador`) || 'N/A';
+        let counterName = 'N/A';
         let unsubscribes = [];
 
-        const formVentas = document.getElementById('form-ventas');
-        const formConteo = document.getElementById('form-conteo');
-        const formCorreccionAdmin = document.getElementById('form-correccion-admin');
-        const formReposicionCsv = document.getElementById('form-reposicion-csv');
-        const formAnulacion = document.getElementById('form-anulacion');
-        const dashboardBody = document.getElementById('dashboard-body');
-        const lastMovementsBody = document.getElementById('last-movements-body');
+        // --- SELECCIÓN DE ELEMENTOS DEL DOM ---
         const authSection = document.getElementById('auth-section');
         const appContent = document.getElementById('app-content');
+        const userIdDisplay = document.getElementById('user-id-display');
+        const counterDisplay = document.getElementById('contador-display');
+        const btnLogout = document.getElementById('btn-logout');
+        const btnClearData = document.getElementById('btn-limpiar-datos');
+        const btnLogin = document.getElementById('btn-login');
+        const btnRegister = document.getElementById('btn-register');
+        const authEmailInput = document.getElementById('auth-email');
+        const authPasswordInput = document.getElementById('auth-password');
+        const counterNameInput = document.getElementById('contador-nombre');
+        const btnSaveCounterName = document.getElementById('btn-guardar-contador');
+        const csvFileInput = document.getElementById('csv-file-input');
+        const formSales = document.getElementById('form-ventas');
+        const salesSkuInput = document.getElementById('venta-sku');
+        const salesQuantityInput = document.getElementById('venta-cantidad');
+        const formCount = document.getElementById('form-conteo');
+        const countSkuInput = document.getElementById('conteo-sku');
+        const countQuantityInput = document.getElementById('conteo-cantidad');
+        const formCorrectionAdmin = document.getElementById('form-correccion-admin');
+        const correctionSkuInput = document.getElementById('correc-sku');
+        const correctionQuantityInput = document.getElementById('correc-cantidad');
+        const correctionAdminNameInput = document.getElementById('correc-nombre-admin');
+        const formCancellation = document.getElementById('form-anulacion');
+        const cancellationSkuInput = document.getElementById('anular-sku');
+        const cancellationQuantityInput = document.getElementById('anular-cantidad');
+        const cancellationAdminNameInput = document.getElementById('anular-nombre-admin');
+        const formReposicionCsv = document.getElementById('form-reposicion-csv');
+        const repoCsvInput = document.getElementById('repo-csv-input');
+        const repoAdminNameInput = document.getElementById('repo-nombre-admin');
+        const dashboardBody = document.getElementById('dashboard-body');
+        const lastMovementsBody = document.getElementById('last-movements-body');
+        const searchInput = document.getElementById('search-input');
+        const btnDownloadCsv = document.getElementById('btn-descargar-csv');
+        const btnOpenAdminLog = document.getElementById('btn-abrir-log-admin');
+        const adminLogModal = document.getElementById('adminLogModal');
+        const closeAdminLogBtn = document.getElementById('close-admin-log');
+        const adminLogBody = document.getElementById('admin-log-body');
+        const btnClearLog = document.getElementById('btn-limpiar-log');
+        const logDatePicker = document.getElementById('log-date-picker');
         const myModal = document.getElementById('myModal');
         const modalMessage = document.getElementById('modal-message');
         const modalButtons = document.getElementById('modal-buttons');
-        const contadorNombreInput = document.getElementById('contador-nombre');
-        const btnGuardarContador = document.getElementById('btn-guardar-contador');
-        const contadorDisplay = document.getElementById('contador-display');
-        const adminLogModal = document.getElementById('adminLogModal');
-        const btnAbrirLogAdmin = document.getElementById('btn-abrir-log-admin');
-        const logDatePicker = document.getElementById('log-date-picker');
-        const adminLogBody = document.getElementById('admin-log-body');
-        const searchInput = document.getElementById('search-input');
-        const csvFileInput = document.getElementById('csv-file-input');
-        const repoCsvInput = document.getElementById('repo-csv-input');
-        const btnLimpiarLog = document.getElementById('btn-limpiar-log');
 
-        const showToast = (message, isError = false) => {
+        // --- FUNCIONES DE UTILIDAD ---
+        function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
-            toast.className = `show ${isError ? 'error' : 'success'}`;
-            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
-        };
-
-        const showConfirmationModal = (message, onConfirm) => {
-            modalMessage.innerHTML = `<p>${message}</p>`;
-            modalButtons.innerHTML = `
-                <button id="modal-cancel" class="btn btn-secondary">Cancelar</button>
-                <button id="modal-confirm" class="btn btn-danger">Confirmar</button>`;
-            myModal.style.display = 'flex';
-            document.getElementById('modal-confirm').onclick = () => {
-                myModal.style.display = 'none';
-                onConfirm();
-            };
-            document.getElementById('modal-cancel').onclick = () => { myModal.style.display = 'none'; };
-        };
-        
-        const showPasswordModal = (onConfirm) => {
-            const password = prompt("Por favor, ingrese la contraseña de administrador:");
-            if (password === getAdminPassword()) {
-                onConfirm();
-            } else if (password !== null) {
-                showToast("Contraseña incorrecta.", true);
-            }
-        };
-
-        document.querySelector('.close-button').onclick = () => { myModal.style.display = 'none'; };
-        document.getElementById('close-admin-log').onclick = () => { adminLogModal.style.display = 'none'; };
-        
-        const normalizarSku = (sku) => sku ? sku.toUpperCase().trim() : '';
-        const formatDate = (timestamp) => timestamp ? timestamp.toDate().toLocaleString('es-AR') : 'N/A';
-        
-        const sanitizeForFirestoreId = (text) => {
-            if (!text) return '';
-            return text.replace(/\//g, '_');
-        };
-
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const userDocRef = doc(db, "users", user.uid);
-                try {
-                    const userDoc = await getDoc(userDocRef);
-                    if (userDoc.exists() && userDoc.data().businessId === BUSINESS_ID) {
-                        userId = user.uid;
-                        userEmail = user.email;
-                        document.getElementById('user-id-display').textContent = userEmail || userId;
-                        
-                        authSection.style.display = 'none';
-                        appContent.style.display = 'block';
-                        
-                        contadorDisplay.textContent = nombreContador;
-                        contadorNombreInput.value = nombreContador !== 'N/A' ? nombreContador : '';
-                        setupFirestoreListeners();
-                    } else {
-                        await signOut(auth);
-                        showToast('Acceso denegado. No perteneces a este negocio.', true);
-                    }
-                } catch (error) {
-                    console.error("Error al verificar perfil de usuario:", error);
-                    await signOut(auth);
-                    showToast('Error de permisos al verificar tu perfil.', true);
-                }
-            } else {
-                userId = null;
-                userEmail = null;
-                document.getElementById('user-id-display').textContent = 'No autenticado';
-                authSection.style.display = 'flex';
-                appContent.style.display = 'none';
-                stockTeorico = []; datosVentas = []; datosConteo = []; auditLog = [];
-                unsubscribes.forEach(unsub => unsub());
-                unsubscribes = [];
-                renderAll();
-            }
-        });
-
-        function setupFirestoreListeners() {
-            if (unsubscribes.length > 0) {
-                unsubscribes.forEach(unsub => unsub());
-                unsubscribes = [];
-            }
-            const collections = {
-                stockTeorico: collection(db, `businesses/${BUSINESS_ID}/stockTeorico`),
-                datosVentas: query(collection(db, `businesses/${BUSINESS_ID}/datosVentas`), orderBy("timestamp", "desc")),
-                datosConteo: query(collection(db, `businesses/${BUSINESS_ID}/datosConteo`), orderBy("timestamp", "desc")),
-                auditLog: query(collection(db, `businesses/${BUSINESS_ID}/auditLog`), orderBy("timestamp", "desc"))
-            };
-
-            unsubscribes.push(onSnapshot(collections.stockTeorico, s => { stockTeorico = s.docs.map(d => ({ id: d.id, ...d.data() })); renderAll(); }));
-            unsubscribes.push(onSnapshot(collections.datosVentas, s => { datosVentas = s.docs.map(d => ({ ...d.data(), id: d.id })); renderAll(); }));
-            unsubscribes.push(onSnapshot(collections.datosConteo, s => { datosConteo = s.docs.map(d => ({ ...d.data(), id: d.id })); renderAll(); }));
-            unsubscribes.push(onSnapshot(collections.auditLog, s => { auditLog = s.docs.map(d => ({ ...d.data(), id: d.id })); renderAdminLog(); }));
-        }
-        
-        function renderAll() {
-            const data = getDashboardData();
-            renderDashboard(data);
-            renderLastMovements();
+            toast.className = isError ? 'show error' : 'show success';
+            setTimeout(() => {
+                toast.className = toast.className.replace('show', '');
+            }, 3000);
         }
 
-        function getDashboardData() {
-            const searchTerm = normalizarSku(searchInput.value);
-            let motorCalculos = stockTeorico.map(producto => {
-                const sku = normalizarSku(producto.sku);
-                const stockTeoricoInicial = Number(producto.stock) || 0;
+        function showModal(message, isConfirm = false, onConfirm = null) {
+            modalMessage.textContent = message;
+            modalButtons.innerHTML = '';
+            const closeBtn = document.createElement('button');
+            closeBtn.textContent = 'Cerrar';
+            closeBtn.className = 'btn btn-secondary';
+            closeBtn.onclick = () => myModal.style.display = 'none';
+            modalButtons.appendChild(closeBtn);
 
-                const ventasFiltradas = datosVentas.filter(v => normalizarSku(v.sku) === sku);
-                const conteosFiltrados = datosConteo.filter(c => normalizarSku(c.sku) === sku);
-
-                const conteosManuales = conteosFiltrados.filter(c => c.tipo === 'conteo');
-                const ultimoConteo = conteosManuales[0];
-                const horaConteo = ultimoConteo?.timestamp;
-                const fisicoContado = conteosManuales.reduce((sum, item) => sum + item.cantidad, 0);
-
-                let stockFinal = 0;
-                let diferenciaConteo = 'N/A';
-                let totalVendido = ventasFiltradas.reduce((s, v) => s + v.cantidad, 0);
-                let fechaUltimaRepo = null;
-                let contador = 'N/A';
-
-                if (horaConteo) {
-                    contador = ultimoConteo.contador;
-                    const ventasPostConteo = ventasFiltradas.filter(v => v.timestamp.toDate() > horaConteo.toDate());
-                    const reposYAnulPostConteo = conteosFiltrados.filter(c => (c.tipo === 'reposicion' || c.tipo === 'anulacion') && c.timestamp.toDate() > horaConteo.toDate());
-                    
-                    const ventasPreConteo = ventasFiltradas.filter(v => v.timestamp.toDate() <= horaConteo.toDate());
-                    const reposYAnulPreConteo = conteosFiltrados.filter(c => (c.tipo === 'reposicion' || c.tipo === 'anulacion') && c.timestamp.toDate() <= horaConteo.toDate());
-
-                    const totalVentasPostConteo = ventasPostConteo.reduce((s, v) => s + v.cantidad, 0);
-                    const totalReposYAnulPostConteo = reposYAnulPostConteo.reduce((s, r) => s + r.cantidad, 0);
-                    
-                    const totalVentasPreConteo = ventasPreConteo.reduce((s, v) => s + v.cantidad, 0);
-                    const totalReposYAnulPreConteo = reposYAnulPreConteo.reduce((s, r) => s + r.cantidad, 0);
-                    
-                    stockFinal = fisicoContado + totalReposYAnulPostConteo - totalVentasPostConteo;
-                    
-                    const stockTeoricoAlMomentoDelConteo = stockTeoricoInicial + totalReposYAnulPreConteo - totalVentasPreConteo;
-                    diferenciaConteo = fisicoContado - stockTeoricoAlMomentoDelConteo;
-
-                    const allRepos = [...reposYAnulPreConteo, ...reposYAnulPostConteo].sort((a,b) => b.timestamp.toDate() - a.timestamp.toDate());
-                    fechaUltimaRepo = allRepos[0]?.timestamp;
-
-                } else {
-                    const totalReposicionesYAnulaciones = conteosFiltrados
-                        .filter(c => c.tipo === 'reposicion' || c.tipo === 'anulacion')
-                        .reduce((sum, item) => sum + item.cantidad, 0);
-                    
-                    stockFinal = stockTeoricoInicial + totalReposicionesYAnulaciones - totalVendido;
-                    diferenciaConteo = 'N/A';
-                    
-                    const allRepos = conteosFiltrados.filter(c => c.tipo === 'reposicion' || c.tipo === 'anulacion');
-                    fechaUltimaRepo = allRepos[0]?.timestamp;
-                }
-
-                let estadoCalculado, prioridad;
-                if (!horaConteo) { estadoCalculado = 'Pendiente'; prioridad = 3; } 
-                else if (diferenciaConteo === 0) { estadoCalculado = 'Cuadrado'; prioridad = 4; }
-                else if (diferenciaConteo > 0) { estadoCalculado = 'Sobrante'; prioridad = 2; }
-                else { estadoCalculado = 'Faltante'; prioridad = 1; }
-
-                return { 
-                    ...producto, 
-                    stockTeorico: stockTeoricoInicial, 
-                    fisicoContado, 
-                    totalVendido, 
-                    horaConteo, 
-                    fechaIngresoTeorico: producto.fechaIngreso, 
-                    fechaUltimaRepo,
-                    horaVenta: ventasFiltradas[0]?.timestamp,
-                    diferenciaConteo, 
-                    stockFinal, 
-                    estadoCalculado, 
-                    prioridad, 
-                    contador
+            if (isConfirm) {
+                const confirmBtn = document.createElement('button');
+                confirmBtn.textContent = 'Confirmar';
+                confirmBtn.className = 'btn btn-danger';
+                confirmBtn.onclick = () => {
+                    onConfirm();
+                    myModal.style.display = 'none';
                 };
-            });
-
-            if (searchTerm) {
-                motorCalculos = motorCalculos.filter(item => normalizarSku(item.sku).includes(searchTerm));
+                modalButtons.appendChild(confirmBtn);
             }
-            
-            motorCalculos.sort((a, b) => {
-                if (a.prioridad !== b.prioridad) return a.prioridad - b.prioridad;
-                if (typeof a.diferenciaConteo === 'number' && typeof b.diferenciaConteo === 'number') return Math.abs(b.diferenciaConteo) - Math.abs(a.diferenciaConteo);
-                return 0;
-            });
-            return motorCalculos;
-        }
-
-
-        function renderDashboard(data) {
-            dashboardBody.innerHTML = data.map(item => {
-                const badgeClass = `badge-${item.estadoCalculado.toLowerCase()}`;
-                return `
-                    <tr>
-                        <td class="table-cell text-center">${item.prioridad}</td>
-                        <td class="table-cell font-semibold">${item.sku}</td>
-                        <td class="table-cell"><span class="badge ${badgeClass}">${item.estadoCalculado}</span></td>
-                        <td class="table-cell font-bold text-indigo-600">${item.stockFinal}</td>
-                        <td class="table-cell font-semibold ${item.diferenciaConteo > 0 ? 'text-green-600' : item.diferenciaConteo < 0 ? 'text-red-600' : ''}">${item.diferenciaConteo}</td>
-                        <td class="table-cell">${item.fisicoContado}</td>
-                        <td class="table-cell">${item.stockTeorico}</td>
-                        <td class="table-cell">${item.totalVendido}</td>
-                        <td class="table-cell">${item.contador}</td>
-                        <td class="table-cell">${formatDate(item.fechaIngresoTeorico)}</td>
-                        <td class="table-cell">${formatDate(item.fechaUltimaRepo)}</td>
-                        <td class="table-cell">${formatDate(item.horaConteo)}</td>
-                        <td class="table-cell">${formatDate(item.horaVenta)}</td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function renderLastMovements() {
-            const ventasConTipo = datosVentas.map(v => ({...v, tipoMov: 'Venta', responsable: v.vendedor}));
-            const conteosConTipo = datosConteo.map(c => ({...c, tipoMov: c.tipo.charAt(0).toUpperCase() + c.tipo.slice(1), responsable: c.responsable || c.contador}));
-
-            const allMovements = [...ventasConTipo, ...conteosConTipo]
-                .sort((a, b) => b.timestamp.toDate() - a.timestamp.toDate())
-                .slice(0, 10);
-            
-            lastMovementsBody.innerHTML = allMovements.map(m => `
-                <tr>
-                    <td class="table-cell">${m.tipoMov}</td>
-                    <td class="table-cell font-semibold">${m.sku}</td>
-                    <td class="table-cell">${m.cantidad}</td>
-                    <td class="table-cell">${m.responsable}</td>
-                    <td class="table-cell">${formatDate(m.timestamp)}</td>
-                </tr>
-            `).join('');
-        }
-
-
-        function renderAdminLog() {
-            let filteredLog = auditLog;
-            if (logDatePicker.value) {
-                const filterDate = new Date(logDatePicker.value);
-                const start = new Date(filterDate.setHours(0, 0, 0, 0));
-                const end = new Date(filterDate.setHours(23, 59, 59, 999));
-                filteredLog = auditLog.filter(log => {
-                    const logDate = log.timestamp.toDate();
-                    return logDate >= start && logDate <= end;
-                });
-            }
-            adminLogBody.innerHTML = filteredLog.map(log => `
-                <tr>
-                    <td class="table-cell">${formatDate(log.timestamp)}</td>
-                    <td class="table-cell">${log.type}</td>
-                    <td class="table-cell font-semibold">${log.sku}</td>
-                    <td class="table-cell">${log.quantity}</td>
-                    <td class="table-cell">${log.responsable}</td>
-                    <td class="table-cell text-sm">${log.details || ''}</td>
-                </tr>
-            `).join('');
+            myModal.style.display = 'flex';
         }
         
-        async function logAction(type, sku, quantity, responsable, details = '') {
-            const auditLogCol = collection(db, `businesses/${BUSINESS_ID}/auditLog`);
-            await addDoc(auditLogCol, {
+        function downloadCsv(filename, data) {
+            const blob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", filename);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function toggleButton(button, enable) {
+            button.disabled = !enable;
+            if (enable) {
+                button.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                button.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        }
+        
+        function formatFirebaseTimestamp(timestamp) {
+            if (!timestamp) return 'N/A';
+            const date = timestamp.toDate();
+            return date.toLocaleString('es-AR');
+        }
+
+        function validateSku(sku) {
+            const skuRegex = /^[A-Z0-9_-]+$/;
+            if (!sku) return false;
+            if (!skuRegex.test(sku)) return false;
+            return true;
+        }
+
+        function setupSkuInputValidation() {
+            const skuInputs = document.querySelectorAll('.sku-input');
+            skuInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const originalValue = e.target.value;
+                    e.target.value = originalValue.trim();
+                    const warningMessage = e.target.nextElementSibling;
+                    if (e.target.value.includes(' ')) {
+                        input.classList.add('invalid');
+                        if (warningMessage && warningMessage.classList.contains('sku-warning')) {
+                            warningMessage.textContent = "¡Ojo! Los códigos no llevan espacios.";
+                            warningMessage.classList.remove('hidden');
+                        }
+                    } else if (!validateSku(e.target.value.toUpperCase())) {
+                        input.classList.add('invalid');
+                        if (warningMessage && warningMessage.classList.contains('sku-warning')) {
+                            warningMessage.textContent = "SKU inválido. Solo letras, números, guiones y guiones bajos permitidos.";
+                            warningMessage.classList.remove('hidden');
+                        }
+                    } else {
+                        input.classList.remove('invalid');
+                        if (warningMessage && warningMessage.classList.contains('sku-warning')) {
+                            warningMessage.classList.add('hidden');
+                            warningMessage.textContent = "¡Ojo! Los códigos no llevan espacios.";
+                        }
+                    }
+                });
+            });
+        }
+
+        // --- LÓGICA DE FIREBASE Y SINCRONIZACIÓN ---
+        function startFirestoreListeners() {
+            if (!BUSINESS_ID) return;
+            
+            // Suscribirse al stock teórico (catálogo)
+            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/theoreticalStock`), (snapshot) => {
+                theoreticalStock = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderDashboard();
+            }));
+
+            // Suscribirse a los datos de ventas
+            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/salesData`), (snapshot) => {
+                salesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderDashboard();
+            }));
+
+            // Suscribirse a los datos de conteo
+            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/countData`), (snapshot) => {
+                countData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderDashboard();
+            }));
+
+            // Suscribirse al log de auditoría
+            const auditQuery = query(collection(db, `businesses/${BUSINESS_ID}/auditLog`), orderBy('timestamp', 'desc'), limit(10));
+            unsubscribes.push(onSnapshot(auditQuery, (snapshot) => {
+                auditLog = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderLastMovements();
+            }));
+        }
+
+        function stopFirestoreListeners() {
+            unsubscribes.forEach(unsubscribe => unsubscribe());
+            unsubscribes = [];
+        }
+        
+        async function logAction(type, sku, quantity, responsible, detail) {
+            if (!BUSINESS_ID) return;
+            const logCol = collection(db, `businesses/${BUSINESS_ID}/auditLog`);
+            await addDoc(logCol, {
                 type,
-                sku: normalizarSku(sku),
+                sku: sku.toUpperCase(),
                 quantity,
-                responsable,
-                details,
-                user: userEmail,
+                responsible,
+                detail,
                 timestamp: serverTimestamp()
             });
         }
+        
+        // --- LÓGICA DE CÁLCULO Y RENDERIZADO DEL DASHBOARD ---
+        function getDashboardData() {
+            const searchTerm = searchInput.value.trim().toUpperCase();
+            
+            const countMap = new Map();
+            countData.forEach(count => {
+                const sku = count.sku.toUpperCase().trim();
+                if (count.type === 'conteo') {
+                    countMap.set(sku, {
+                        physicalCounted: count.quantity,
+                        counter: count.counter,
+                        countDate: count.timestamp
+                    });
+                }
+            });
 
-        function procesarStockCSV(file, onData) {
-            if (!file) {
-                showToast("Por favor, seleccione un archivo.", true);
+            let dashboardData = theoreticalStock.map(product => {
+                const sku = product.sku.toUpperCase().trim();
+                const initialTheoreticalStock = Number(product.stock) || 0;
+                
+                const filteredSales = salesData.filter(v => v.sku.toUpperCase().trim() === sku);
+                const totalSold = filteredSales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
+                const lastSale = filteredSales.length > 0 ? filteredSales.reduce((a, b) => a.timestamp > b.timestamp ? a : b) : null;
+                
+                const countDataForSku = countMap.get(sku) || {};
+                const physicalCounted = countDataForSku.physicalCounted || 0;
+                const counter = countDataForSku.counter || 'N/A';
+                const countDate = countDataForSku.countDate || null;
+                
+                const currentTheoreticalStock = initialTheoreticalStock - totalSold;
+                const countDifference = physicalCounted - currentTheoreticalStock;
+
+                let calculatedStatus, priority;
+                if (countDifference === 0 && countDate) { calculatedStatus = 'Cuadrado'; priority = 4; }
+                else if (countDifference > 0 && countDate) { calculatedStatus = 'Sobrante'; priority = 2; }
+                else if (countDifference < 0 && countDate) { calculatedStatus = 'Faltante'; priority = 1; }
+                else { calculatedStatus = 'Pendiente'; priority = 3; }
+                
+                return {
+                    sku,
+                    currentTheoreticalStock,
+                    countDifference,
+                    physicalCounted,
+                    initialTheoreticalStock,
+                    totalSold,
+                    counter,
+                    countDate,
+                    saleDate: lastSale?.timestamp || null,
+                    theoreticalDate: product.timestamp,
+                    status: calculatedStatus,
+                    priority
+                };
+            });
+            
+            if (searchTerm) {
+                dashboardData = dashboardData.filter(item => item.sku.includes(searchTerm));
+            }
+
+            return dashboardData.sort((a, b) => {
+                if (a.priority !== b.priority) {
+                    return a.priority - b.priority;
+                }
+                return a.sku.localeCompare(b.sku);
+            });
+        }
+        
+        function renderDashboard() {
+            const data = getDashboardData();
+            dashboardBody.innerHTML = '';
+            if (data.length === 0) {
+                dashboardBody.innerHTML = `<tr><td colspan="13" class="table-cell text-center">No hay datos para mostrar.</td></tr>`;
                 return;
             }
+            data.forEach(item => {
+                const badgeClass = `badge badge-${item.status.toLowerCase()}`;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="table-cell">${item.priority}</td>
+                    <td class="table-cell font-semibold">${item.sku}</td>
+                    <td class="table-cell"><span class="${badgeClass}">${item.status}</span></td>
+                    <td class="table-cell text-right">${item.currentTheoreticalStock}</td>
+                    <td class="table-cell text-right">${item.countDifference}</td>
+                    <td class="table-cell text-right">${item.physicalCounted}</td>
+                    <td class="table-cell text-right">${item.initialTheoreticalStock}</td>
+                    <td class="table-cell text-right">${item.totalSold}</td>
+                    <td class="table-cell">${item.counter}</td>
+                    <td class="table-cell">${formatFirebaseTimestamp(item.theoreticalDate)}</td>
+                    <td class="table-cell">N/A</td>
+                    <td class="table-cell">${formatFirebaseTimestamp(item.countDate)}</td>
+                    <td class="table-cell">${formatFirebaseTimestamp(item.saleDate)}</td>
+                `;
+                dashboardBody.appendChild(row);
+            });
+        }
+        
+        function renderLastMovements() {
+            lastMovementsBody.innerHTML = '';
+            if (auditLog.length === 0) {
+                lastMovementsBody.innerHTML = `<tr><td colspan="5" class="table-cell text-center">No hay movimientos recientes.</td></tr>`;
+                return;
+            }
+            auditLog.forEach(log => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="table-cell">${log.type}</td>
+                    <td class="table-cell">${log.sku}</td>
+                    <td class="table-cell text-right">${log.quantity}</td>
+                    <td class="table-cell">${log.responsible}</td>
+                    <td class="table-cell">${formatFirebaseTimestamp(log.timestamp)}</td>
+                `;
+                lastMovementsBody.appendChild(row);
+            });
+        }
+        
+        // --- LISTENERS DE LA INTERFAZ DE USUARIO ---
+        
+        // Autenticación
+        btnLogin.addEventListener('click', async () => {
+            const email = authEmailInput.value;
+            const password = authPasswordInput.value;
+            toggleButton(btnLogin, false);
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                showToast("Error de autenticación. Verifica email y contraseña.", true);
+                console.error(error);
+            } finally {
+                toggleButton(btnLogin, true);
+            }
+        });
+
+        btnRegister.addEventListener('click', async () => {
+            const email = authEmailInput.value;
+            const password = authPasswordInput.value;
+            toggleButton(btnRegister, false);
+            try {
+                await createUserWithEmailAndPassword(auth, email, password);
+                showToast("Espacio creado exitosamente. ¡Bienvenido!", false);
+            } catch (error) {
+                showToast("Error al crear espacio. Intenta con otro email.", true);
+                console.error(error);
+            } finally {
+                toggleButton(btnRegister, true);
+            }
+        });
+
+        btnLogout.addEventListener('click', async () => {
+            toggleButton(btnLogout, false);
+            await signOut(auth);
+            toggleButton(btnLogout, true);
+        });
+
+        // Configuración de contador
+        btnSaveCounterName.addEventListener('click', () => {
+            const newName = counterNameInput.value.trim();
+            if (newName) {
+                counterName = newName;
+                counterDisplay.textContent = counterName;
+                showToast(`Nombre de contador fijado: ${counterName}`, false);
+            }
+        });
+        
+        // Cargar CSV (Stock Teórico)
+        csvFileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
             const reader = new FileReader();
-            reader.onload = (event) => {
+            reader.onload = async function(event) {
                 const text = event.target.result;
-                const rows = text.replace(/\r\n/g, '\n').split('\n').map(row => row.trim()).filter(row => row);
+                const lines = text.split(/\r?\n/).filter(line => line.trim());
                 
-                if (rows.length === 0) {
-                    showToast("Archivo CSV vacío.", true);
-                    return;
-                }
+                const skusWithErrors = [];
+                const dataToUpload = lines.map((line, index) => {
+                    const cols = line.split(';');
+                    const sku = cols[0]?.trim()?.toUpperCase();
+                    // Reemplaza la coma con un punto para el parseo
+                    const stockString = cols[1]?.replace(',', '.');
+                    const stock = parseFloat(stockString);
 
-                const firstRow = rows[0];
-                const delimiter = firstRow.split(';').length > firstRow.split(',').length ? ';' : ',';
-
-                const data = rows.map(row => {
-                    const parts = row.split(delimiter);
-                    if (parts.length < 2) {
-                        return null;
-                    }
-                    
-                    const sku = normalizarSku(parts[0]);
-                    const stock = Number(parts[1].trim());
-
-                    if (sku.toLowerCase() === 'sku' || sku.toLowerCase() === 'código' || sku.includes('SISTEMA')) {
-                        return null;
-                    }
-
-                    if (!sku || isNaN(stock)) {
+                    if (!validateSku(sku) || isNaN(stock)) {
+                        let errorMessage = '';
+                        if (!validateSku(sku)) {
+                            errorMessage += `SKU inválido: "${sku}". `;
+                        }
+                        if (isNaN(stock)) {
+                            errorMessage += `Stock inválido: "${cols[1] || 'N/A'}". `;
+                        }
+                        skusWithErrors.push({ originalLine: line, error: errorMessage.trim() });
                         return null;
                     }
                     return { sku, stock };
                 }).filter(item => item !== null);
 
-                if (data.length === 0) {
-                        showToast("No se encontraron datos válidos en el CSV.", true);
-                        return;
-                }
-                onData(data);
-            };
-            reader.onerror = () => showToast("Error al leer el archivo.", true);
-            reader.readAsText(file, 'ISO-8859-1');
-        }
-
-        async function handleInitialStockUpload(data) {
-            showToast(`Procesando ${data.length} productos...`);
-            const batch = writeBatch(db);
-            const stockTeoricoCol = collection(db, `businesses/${BUSINESS_ID}/stockTeorico`);
-            
-            try {
-                const existingDocs = await getDocs(stockTeoricoCol);
-                existingDocs.forEach(doc => batch.delete(doc.ref));
-            } catch (error) {
-                console.error("Error al obtener stock para limpiar:", error);
-                showToast("Error al limpiar el catálogo antiguo.", true);
-                return;
-            }
-
-            data.forEach(item => {
-                const originalSku = item.sku;
-                const sanitizedId = sanitizeForFirestoreId(originalSku);
-
-                if (!sanitizedId || sanitizedId.length === 0) {
-                    return;
+                let message = `¿Confirma la carga de ${dataToUpload.length} productos? Esto reemplazará el catálogo teórico actual.`;
+                if (skusWithErrors.length > 0) {
+                    message += ` Se omitieron ${skusWithErrors.length} productos con errores.`;
                 }
 
-                const docRef = doc(stockTeoricoCol, sanitizedId);
-                batch.set(docRef, {
-                    sku: originalSku,
-                    stock: item.stock,
-                    fechaIngreso: serverTimestamp()
+                showModal(message, true, async () => {
+                    const batch = writeBatch(db);
+                    const stockTeoricoColRef = collection(db, `businesses/${BUSINESS_ID}/theoreticalStock`);
+                    
+                    const oldDocs = await getDocs(stockTeoricoColRef);
+                    oldDocs.forEach(doc => batch.delete(doc.ref));
+
+                    dataToUpload.forEach(item => {
+                        const newDocRef = doc(stockTeoricoColRef);
+                        batch.set(newDocRef, {
+                            ...item,
+                            timestamp: serverTimestamp()
+                        });
+                    });
+                    
+                    try {
+                        await batch.commit();
+                        let successMessage = `Catálogo cargado con éxito. Se cargaron ${dataToUpload.length} productos.`;
+                        if (skusWithErrors.length > 0) {
+                            successMessage += ` Se omitieron ${skusWithErrors.length} productos con errores. Se ha descargado un archivo con los errores para que los puedas corregir.`;
+
+                            const errorCsvHeader = ['SKU', 'Stock', 'Motivo del Error'];
+                            const errorCsvRows = skusWithErrors.map(errorItem => {
+                                const originalCols = errorItem.originalLine.split(';');
+                                return [
+                                    `"${originalCols[0]?.trim() || ''}"`,
+                                    `"${originalCols[1]?.trim() || ''}"`,
+                                    `"${errorItem.error}"`
+                                ];
+                            });
+
+                            const errorCsvContent = [
+                                errorCsvHeader.join(';'),
+                                ...errorCsvRows.map(row => row.join(';'))
+                            ].join('\n');
+
+                            downloadCsv(`errores_catalogo_${new Date().toISOString()}.csv`, errorCsvContent);
+
+                        }
+                        showToast(successMessage, false);
+                        
+                        await logAction('Catálogo', 'N/A', dataToUpload.length, userEmail, `Cargado ${dataToUpload.length} items desde CSV.`);
+                        e.target.value = '';
+                    } catch (error) {
+                        showToast("Error al cargar el catálogo.", true);
+                        console.error(error);
+                    }
                 });
-            });
+            };
+            reader.onerror = () => showToast("Error leyendo el archivo CSV.", true);
+            reader.readAsText(file);
+        });
+        
+        // Registrar Venta
+        formSales.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const sku = salesSkuInput.value.trim().toUpperCase();
+            const quantity = Number(salesQuantityInput.value);
+            const submitButton = e.target.querySelector('button[type="submit"]');
 
-            try {
-                await batch.commit();
-                await logAction('Carga Masiva', `N/A`, data.length, userEmail, `Cargados ${data.length} SKUs desde CSV.`);
-                showToast("Catálogo cargado y sobreescrito con éxito.", false);
-            } catch (error) {
-                console.error("Error al cargar el nuevo stock:", error);
-                showToast("Error al cargar el catálogo.", true);
+            if (!validateSku(sku)) {
+                salesSkuInput.classList.add('invalid');
+                showToast("SKU inválido.", true);
+                return;
+            } else {
+                salesSkuInput.classList.remove('invalid');
             }
-        }
+            if (!quantity || quantity <= 0) {
+                salesQuantityInput.classList.add('invalid');
+                showToast("Cantidad debe ser mayor que cero.", true);
+                return;
+            } else {
+                salesQuantityInput.classList.remove('invalid');
+            }
 
-        async function handleReplenishmentUpload(data, adminName) {
-            showToast(`Procesando ${data.length} reposiciones...`);
-            const batch = writeBatch(db);
-            const datosConteoCol = collection(db, `businesses/${BUSINESS_ID}/datosConteo`);
-            data.forEach(item => {
-                const docRef = doc(datosConteoCol);
-                batch.set(docRef, {
-                    sku: item.sku,
-                    cantidad: item.stock,
-                    tipo: 'reposicion',
-                    responsable: adminName,
+            toggleButton(submitButton, false);
+            try {
+                await addDoc(collection(db, `businesses/${BUSINESS_ID}/salesData`), {
+                    sku,
+                    quantity,
                     timestamp: serverTimestamp()
                 });
-            });
-             try {
-                await batch.commit();
-                await logAction('Reposición CSV', `N/A`, data.length, adminName, `Repuestos ${data.length} SKUs desde CSV.`);
-                showToast("Reposición desde CSV registrada con éxito.", false);
+                await logAction('Venta', sku, quantity, 'N/A', `Vendido ${quantity} unidades.`);
+                showToast("Venta registrada con éxito.", false);
+                formSales.reset();
+                salesSkuInput.focus();
             } catch (error) {
-                console.error("Error en reposición CSV:", error);
-                showToast("Error al registrar la reposición.", true);
+                showToast("Error al registrar venta.", true);
+                console.error(error);
+            } finally {
+                toggleButton(submitButton, true);
             }
-        }
+        });
+        
+        // Añadir Conteo Físico
+        formCount.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const skuInput = countSkuInput;
+            const quantityInput = countQuantityInput;
+            const sku = skuInput.value.trim().toUpperCase();
+            const quantity = Number(quantityInput.value);
+            const submitButton = e.target.querySelector('button[type="submit"]');
 
-        function downloadCSV() {
+            if (counterName === 'N/A') {
+                showToast("Por favor, fije un nombre de contador primero.", true);
+                return;
+            }
+            if (!validateSku(sku)) {
+                skuInput.classList.add('invalid');
+                showToast("SKU inválido.", true);
+                return;
+            } else {
+                skuInput.classList.remove('invalid');
+            }
+            if (!quantity || quantity <= 0) {
+                quantityInput.classList.add('invalid');
+                showToast("Cantidad debe ser mayor que cero.", true);
+                return;
+            } else {
+                quantityInput.classList.remove('invalid');
+            }
+
+            const originalButtonText = submitButton.textContent;
+            toggleButton(submitButton, false);
+            submitButton.textContent = 'Añadiendo...';
+            showToast("Aún no se ha guardado el producto, espera un momento.", false);
+
+            try {
+                const countColRef = collection(db, `businesses/${BUSINESS_ID}/countData`);
+                const q = query(countColRef, where("sku", "==", sku), where("type", "==", "conteo"));
+                
+                await runTransaction(db, async (transaction) => {
+                    const countSnapshot = await getDocs(q);
+                    
+                    if (countSnapshot.empty) {
+                        const newCountRef = doc(countColRef);
+                        transaction.set(newCountRef, {
+                            sku,
+                            quantity,
+                            type: 'conteo',
+                            counter: counterName,
+                            timestamp: serverTimestamp()
+                        });
+                    } else {
+                        const existingDoc = countSnapshot.docs[0];
+                        const existingData = existingDoc.data();
+                        const newTotal = (existingData.quantity || 0) + quantity;
+                        transaction.update(existingDoc.ref, { 
+                            quantity: newTotal,
+                            counter: counterName, 
+                            timestamp: serverTimestamp()
+                        });
+                    }
+                });
+                
+                await logAction('Conteo Físico', sku, quantity, counterName, `Añadidas ${quantity} unidades.`);
+                showToast("Conteo actualizado con éxito.", false);
+                formCount.reset();
+                countSkuInput.focus();
+            } catch (error) {
+                showToast("Error al actualizar conteo.", true);
+                console.error("Error en transacción de conteo:", error);
+            } finally {
+                toggleButton(submitButton, true);
+                submitButton.textContent = originalButtonText;
+            }
+        });
+        
+        // Búsqueda en el Dashboard
+        searchInput.addEventListener('input', renderDashboard);
+        
+        // Descargar CSV
+        btnDownloadCsv.addEventListener('click', () => {
             const data = getDashboardData();
             if (data.length === 0) {
                 showToast("No hay datos para descargar.", true);
                 return;
             }
-            const headers = [ "Prioridad", "SKU", "Estado", "Stock Final", "Dif. Conteo", "Físico Contado", "Stock Teórico", "Total Vendido", "Contado por", "Fecha Ing. Teórico", "Fecha Últ. Repo.", "Fecha Conteo", "Fecha Venta" ].join(';');
-            const csvRows = data.map(item => {
-                return [
-                    item.prioridad, item.sku, item.estadoCalculado, item.stockFinal, item.diferenciaConteo,
-                    item.fisicoContado, item.stockTeorico, item.totalVendido, item.contador || 'N/A',
-                    formatDate(item.fechaIngresoTeorico), formatDate(item.fechaUltimaRepo),
-                    formatDate(item.horaConteo), formatDate(item.horaVenta)
-                ].join(';');
-            });
-            const csvContent = "data:text/csv;charset=utf-8," + headers + "\n" + csvRows.join('\n');
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `reconciliacion_${BUSINESS_ID}_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast("Descarga iniciada.", false);
-        }
 
-        btnGuardarContador.addEventListener('click', () => {
-            const nombre = contadorNombreInput.value.trim();
-            if (nombre) {
-                nombreContador = nombre;
-                contadorDisplay.textContent = nombreContador;
-                localStorage.setItem(`${BUSINESS_ID}_nombreContador`, nombreContador);
-                showToast(`Nombre del contador fijado como: ${nombreContador}`, false);
-            } else {
-                showToast("El nombre no puede estar vacío.", true);
-            }
+            const header = ['Prioridad', 'SKU', 'Estado', 'Stock Teórico Actual', 'Diferencia Conteo', 'Físico Contado', 'Stock Teórico Inicial', 'Total Vendido', 'Contado por', 'Fecha Ing. Teórico', 'Fecha Últ. Repo.', 'Fecha Conteo', 'Fecha Venta'];
+            const rows = data.map(item => [
+                item.priority,
+                `"${item.sku}"`,
+                item.status,
+                item.currentTheoreticalStock,
+                item.countDifference,
+                item.physicalCounted,
+                item.initialTheoreticalStock,
+                item.totalSold,
+                `"${item.counter}"`,
+                item.theoreticalDate ? item.theoreticalDate.toDate().toISOString() : 'N/A',
+                'N/A',
+                item.countDate ? item.countDate.toDate().toISOString() : 'N/A',
+                item.saleDate ? item.saleDate.toDate().toISOString() : 'N/A'
+            ]);
+            
+            const csvContent = [
+                header.join(';'),
+                ...rows.map(e => e.join(';'))
+            ].join('\n');
+            
+            downloadCsv(`dashboard_sasi_${new Date().toISOString()}.csv`, csvContent);
+            showToast("CSV descargado con éxito.", false);
         });
 
-        csvFileInput.addEventListener('change', (e) => {
-            procesarStockCSV(e.target.files[0], handleInitialStockUpload);
-            e.target.value = '';
-        });
-
-        formReposicionCsv.addEventListener('submit', (e) => {
+        // Operaciones de Administrador
+        formCorrectionAdmin.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const file = repoCsvInput.files[0];
-            const adminName = document.getElementById('repo-nombre-admin').value.trim();
-
-            if (!file || !adminName) {
-                showToast("Debe seleccionar un archivo y proporcionar su nombre.", true);
+            const sku = correctionSkuInput.value.trim().toUpperCase();
+            const quantity = Number(correctionQuantityInput.value);
+            const name = correctionAdminNameInput.value.trim();
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            
+            if (!validateSku(sku)) {
+                correctionSkuInput.classList.add('invalid');
+                showToast("SKU inválido.", true);
                 return;
+            } else {
+                correctionSkuInput.classList.remove('invalid');
+            }
+            if (quantity < 0 || isNaN(quantity)) {
+                correctionQuantityInput.classList.add('invalid');
+                showToast("Cantidad debe ser 0 o mayor.", true);
+                return;
+            } else {
+                correctionQuantityInput.classList.remove('invalid');
+            }
+            if (!name) {
+                correctionAdminNameInput.classList.add('invalid');
+                showToast("Debe ingresar su nombre para auditoría.", true);
+                return;
+            } else {
+                correctionAdminNameInput.classList.remove('invalid');
             }
             
-            showPasswordModal(() => {
-                procesarStockCSV(file, (data) => handleReplenishmentUpload(data, adminName));
-                formReposicionCsv.reset();
-            });
-        });
+            toggleButton(submitButton, false);
 
-        formVentas.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const sku = normalizarSku(e.target['venta-sku'].value);
-            const cantidad = Number(e.target['venta-cantidad'].value);
-            if (!sku || !cantidad || cantidad <= 0) {
-                showToast("SKU y cantidad son obligatorios.", true);
-                return;
-            }
-            try {
-                const datosVentasCol = collection(db, `businesses/${BUSINESS_ID}/datosVentas`);
-                await addDoc(datosVentasCol, {
-                    sku,
-                    cantidad,
-                    vendedor: userEmail,
-                    timestamp: serverTimestamp()
-                });
-                await logAction('Venta', sku, cantidad, userEmail);
-                showToast("Venta registrada con éxito.", false);
-                formVentas.reset();
-            } catch (error) {
-                showToast("Error al registrar la venta.", true);
-                console.error(error);
-            }
-        });
-
-        formConteo.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (nombreContador === 'N/A') {
-                showToast("Por favor, fije un nombre de contador primero.", true);
-                return;
-            }
-            const sku = normalizarSku(e.target['conteo-sku'].value);
-            const cantidad = Number(e.target['conteo-cantidad'].value);
-            if (!sku || !cantidad || cantidad <= 0) {
-                showToast("SKU y cantidad son obligatorios.", true);
-                return;
-            }
-            try {
-                const datosConteoCol = collection(db, `businesses/${BUSINESS_ID}/datosConteo`);
-                await addDoc(datosConteoCol, {
-                    sku,
-                    cantidad,
-                    tipo: 'conteo',
-                    contador: nombreContador,
-                    timestamp: serverTimestamp()
-                });
-                await logAction('Conteo Físico', sku, cantidad, nombreContador);
-                showToast("Conteo añadido con éxito.", false);
-                formConteo.reset();
-            } catch (error) {
-                showToast("Error al añadir conteo.", true);
-                console.error(error);
-            }
-        });
-
-        formCorreccionAdmin.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const sku = normalizarSku(e.target['correc-sku'].value);
-            const cantidad = Number(e.target['correc-cantidad'].value);
-            const adminName = document.getElementById('correc-nombre-admin').value.trim();
-
-             if (!sku || isNaN(cantidad) || cantidad < 0 || !adminName) {
-                showToast("Todos los campos son obligatorios.", true);
-                return;
-            }
-            showPasswordModal(async () => {
+            showModal(`¿Confirma la corrección de stock físico para SKU ${sku} a ${quantity}? Esta acción es irreversible.`, true, async () => {
                 try {
-                    const conteoRef = collection(db, `businesses/${BUSINESS_ID}/datosConteo`);
-                    const q = query(conteoRef, where("sku", "==", sku), where("tipo", "==", "conteo"));
-                    const querySnapshot = await getDocs(q);
-                    const batch = writeBatch(db);
-                    querySnapshot.forEach(doc => {
-                        batch.delete(doc.ref);
-                    });
-                    await batch.commit();
-
-                    await addDoc(conteoRef, {
-                        sku,
-                        cantidad,
-                        tipo: 'conteo',
-                        contador: `Corrección Admin (${adminName})`,
-                        timestamp: serverTimestamp()
-                    });
-                    await logAction('Corrección Stock', sku, cantidad, adminName, `Stock físico ajustado a ${cantidad}`);
+                    const countColRef = collection(db, `businesses/${BUSINESS_ID}/countData`);
+                    const q = query(countColRef, where("sku", "==", sku), where("type", "==", "conteo"));
+                    const countSnapshot = await getDocs(q);
+                    
+                    if (!countSnapshot.empty) {
+                        const existingDoc = countSnapshot.docs[0];
+                        await updateDoc(existingDoc.ref, {
+                            quantity,
+                            counter: name,
+                            timestamp: serverTimestamp()
+                        });
+                    } else {
+                        await addDoc(countColRef, {
+                            sku,
+                            quantity,
+                            type: 'conteo',
+                            counter: name,
+                            timestamp: serverTimestamp()
+                        });
+                    }
+                    await logAction('Corrección Admin', sku, quantity, name, `Stock físico corregido a ${quantity}.`);
                     showToast("Stock físico corregido con éxito.", false);
-                    formCorreccionAdmin.reset();
+                    formCorrectionAdmin.reset();
                 } catch (error) {
-                    showToast("Error al corregir el stock.", true);
+                    showToast("Error al corregir stock.", true);
                     console.error(error);
                 }
             });
+            toggleButton(submitButton, true);
         });
-
-        formAnulacion.addEventListener('submit', (e) => {
+        
+        formCancellation.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const sku = normalizarSku(e.target['anular-sku'].value);
-            const cantidad = Number(e.target['anular-cantidad'].value);
-            const adminName = document.getElementById('anular-nombre-admin').value.trim();
+            const sku = cancellationSkuInput.value.trim().toUpperCase();
+            const quantity = Number(cancellationQuantityInput.value);
+            const name = cancellationAdminNameInput.value.trim();
+            const submitButton = e.target.querySelector('button[type="submit"]');
 
-            if (!sku || !cantidad || cantidad <= 0 || !adminName) {
-                showToast("Todos los campos son obligatorios.", true);
+            if (!validateSku(sku)) {
+                cancellationSkuInput.classList.add('invalid');
+                showToast("SKU inválido.", true);
                 return;
+            } else {
+                cancellationSkuInput.classList.remove('invalid');
             }
-            showPasswordModal(async () => {
+            if (quantity <= 0 || isNaN(quantity)) {
+                cancellationQuantityInput.classList.add('invalid');
+                showToast("Cantidad debe ser mayor que cero.", true);
+                return;
+            } else {
+                cancellationQuantityInput.classList.remove('invalid');
+            }
+            if (!name) {
+                cancellationAdminNameInput.classList.add('invalid');
+                showToast("Debe ingresar su nombre para auditoría.", true);
+                return;
+            } else {
+                cancellationAdminNameInput.classList.remove('invalid');
+            }
+
+            toggleButton(submitButton, false);
+
+            showModal(`¿Confirma la anulación de ${quantity} unidades del SKU ${sku}?`, true, async () => {
                 try {
-                    const datosVentasCol = collection(db, `businesses/${BUSINESS_ID}/datosVentas`);
-                    await addDoc(datosVentasCol, {
+                    await addDoc(collection(db, `businesses/${BUSINESS_ID}/salesData`), {
                         sku,
-                        cantidad: -cantidad,
-                        vendedor: `Anulado por ${adminName}`,
+                        quantity: -quantity,
+                        type: 'anulacion',
+                        responsible: name,
                         timestamp: serverTimestamp()
                     });
-                    await logAction('Anulación Venta', sku, -cantidad, adminName);
-                    showToast("Venta anulada con éxito (se descontó del total vendido).", false);
-                    formAnulacion.reset();
+                    await logAction('Anulación', sku, -quantity, name, `Anuladas ${quantity} unidades.`);
+                    showToast("Venta anulada con éxito.", false);
+                    formCancellation.reset();
                 } catch (error) {
-                    showToast("Error al anular la venta.", true);
+                    showToast("Error al anular venta.", true);
                     console.error(error);
                 }
             });
+            toggleButton(submitButton, true);
         });
+        
+        formReposicionCsv.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const file = repoCsvInput.files[0];
+            const name = repoAdminNameInput.value.trim();
+            const submitButton = e.target.querySelector('button[type="submit"]');
 
-        document.getElementById('btn-logout').addEventListener('click', () => {
-            signOut(auth).catch(error => console.error("Error al salir:", error));
-        });
-
-        document.getElementById('btn-login').addEventListener('click', () => {
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
-            signInWithEmailAndPassword(auth, email, password)
-                .catch(error => showToast(`Error al iniciar sesión: ${error.code}`, true));
-        });
-
-        document.getElementById('btn-register').addEventListener('click', () => {
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
-            if (!email || !password) {
-                showToast("Email y contraseña son requeridos.", true);
+            if (!file || !name) {
+                showToast("Debe seleccionar un archivo y especificar su nombre.", true);
                 return;
             }
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    const userDocRef = doc(db, "users", user.uid);
-                    return setDoc(userDocRef, {
-                        email: user.email,
-                        businessId: BUSINESS_ID
+            if (!name) {
+                repoAdminNameInput.classList.add('invalid');
+                showToast("Debe ingresar su nombre para auditoría.", true);
+                return;
+            } else {
+                repoAdminNameInput.classList.remove('invalid');
+            }
+
+            toggleButton(submitButton, false);
+
+            const reader = new FileReader();
+            reader.onload = async function(event) {
+                const text = event.target.result;
+                const lines = text.split(/\r?\n/).filter(line => line.trim());
+                
+                const dataToUpload = lines.map((line, index) => {
+                    const cols = line.split(';');
+                    const sku = cols[0]?.trim()?.toUpperCase();
+                    const quantity = parseInt(cols[1]?.replace(',', '.'));
+
+                    if (!validateSku(sku) || isNaN(quantity) || quantity <= 0) {
+                        return null;
+                    }
+                    return { sku, quantity };
+                }).filter(item => item !== null);
+
+                const skusWithErrorsCount = lines.length - dataToUpload.length;
+
+                if (dataToUpload.length === 0) {
+                    showToast("Archivo CSV vacío o con formato incorrecto. Formato: SKU;Cantidad. Ningún producto cargado.", true);
+                    toggleButton(submitButton, true);
+                    return;
+                }
+
+                showModal(`¿Confirma la reposición de ${dataToUpload.length} items? Se omitieron ${skusWithErrorsCount} líneas con errores.`, true, async () => {
+                    const batch = writeBatch(db);
+                    const salesColRef = collection(db, `businesses/${BUSINESS_ID}/salesData`);
+                    
+                    dataToUpload.forEach(item => {
+                        const newDocRef = doc(salesColRef);
+                        batch.set(newDocRef, {
+                            sku: item.sku,
+                            quantity: -item.quantity,
+                            type: 'reposicion',
+                            responsible: name,
+                            timestamp: serverTimestamp()
+                        });
                     });
-                })
-                .then(() => {
-                    showToast("Usuario registrado con éxito.", false);
-                })
-                .catch(error => {
-                    showToast(`Error en el registro: ${error.code}`, true);
+                    
+                    try {
+                        await batch.commit();
+                        showToast(`Reposición cargada con éxito. Se cargaron ${dataToUpload.length} items.`, false);
+                        await logAction('Reposición', 'N/A', dataToUpload.length, name, `Reposición de ${dataToUpload.length} items desde CSV.`);
+                        formReposicionCsv.reset();
+                    } catch (error) {
+                        showToast("Error al cargar la reposición.", true);
+                        console.error(error);
+                    } finally {
+                        toggleButton(submitButton, true);
+                    }
                 });
+            };
+            reader.onerror = () => {
+                showToast("Error leyendo el archivo CSV.", true);
+                toggleButton(submitButton, true);
+            };
+            reader.readAsText(file);
         });
 
-        document.getElementById('btn-descargar-csv').addEventListener('click', downloadCSV);
-
-        btnAbrirLogAdmin.addEventListener('click', () => {
+        // Log de Auditoría
+        btnOpenAdminLog.addEventListener('click', () => {
             const password = prompt("Ingrese la contraseña para ver el log de auditoría:");
-            if (password === getLogPassword()) {
-                renderAdminLog();
+            if (password === LOG_PASSWORD) {
                 adminLogModal.style.display = 'flex';
+                const allLogsQuery = query(collection(db, `businesses/${BUSINESS_ID}/auditLog`), orderBy('timestamp', 'desc'));
+                getDocs(allLogsQuery).then(logsSnapshot => {
+                    const allLogs = logsSnapshot.docs.map(doc => doc.data());
+                    renderAdminLog(allLogs);
+                });
             } else if (password !== null) {
                 showToast("Contraseña incorrecta.", true);
             }
         });
 
-        logDatePicker.addEventListener('change', renderAdminLog);
-        searchInput.addEventListener('input', renderAll);
+        closeAdminLogBtn.addEventListener('click', () => {
+            adminLogModal.style.display = 'none';
+        });
 
-        document.getElementById('btn-limpiar-datos').addEventListener('click', () => {
-            showConfirmationModal(
-                '¿Está seguro de que desea borrar TODOS los datos operativos (stock, ventas, conteos)? El log de auditoría NO se borrará. Esta acción es irreversible.',
-                () => {
-                    showPasswordModal(async () => {
-                        showToast("Eliminando datos operativos...");
-                        const collectionsToDelete = ['stockTeorico', 'datosVentas', 'datosConteo'];
-                        const batch = writeBatch(db);
+        function renderAdminLog(logs) {
+            adminLogBody.innerHTML = '';
+            if (logs.length === 0) {
+                adminLogBody.innerHTML = `<tr><td colspan="6" class="table-cell text-center">No hay registros de auditoría.</td></tr>`;
+                return;
+            }
+            logs.forEach(log => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="table-cell">${formatFirebaseTimestamp(log.timestamp)}</td>
+                    <td class="table-cell">${log.type}</td>
+                    <td class="table-cell">${log.sku}</td>
+                    <td class="table-cell text-right">${log.quantity}</td>
+                    <td class="table-cell">${log.responsible}</td>
+                    <td class="table-cell">${log.detail}</td>
+                `;
+                adminLogBody.appendChild(row);
+            });
+        }
+
+        btnClearLog.addEventListener('click', () => {
+            showModal('¿Está seguro de que desea limpiar todo el Log de Auditoría? Esta acción es irreversible.', true, () => {
+                const password = prompt("Para confirmar la eliminación, ingrese la contraseña de Administrador:");
+                if (password === ADMIN_PASSWORD) {
+                    (async () => {
                         try {
-                            for (const colName of collectionsToDelete) {
-                                const colRef = collection(db, `businesses/${BUSINESS_ID}/${colName}`);
-                                const snapshot = await getDocs(colRef);
-                                snapshot.docs.forEach(doc => batch.delete(doc.ref));
-                            }
+                            const logsColRef = collection(db, `businesses/${BUSINESS_ID}/auditLog`);
+                            const logsSnapshot = await getDocs(logsColRef);
+                            const batch = writeBatch(db);
+                            logsSnapshot.forEach(doc => {
+                                batch.delete(doc.ref);
+                            });
                             await batch.commit();
-                            showToast("Todos los datos operativos han sido eliminados.", false);
+                            showToast("Log de auditoría limpiado con éxito.", false);
+                        } catch (error) {
+                            showToast("Error al limpiar el log.", true);
+                            console.error(error);
+                        }
+                    })();
+                } else if (password !== null) {
+                    showToast("Contraseña incorrecta. Operación cancelada.", true);
+                }
+            });
+        });
+        
+        logDatePicker.addEventListener('change', async (e) => {
+            const selectedDate = e.target.value;
+            if (selectedDate) {
+                const startOfDay = new Date(selectedDate);
+                startOfDay.setHours(0, 0, 0, 0);
+                const endOfDay = new Date(selectedDate);
+                endOfDay.setHours(23, 59, 59, 999);
+                
+                const q = query(collection(db, `businesses/${BUSINESS_ID}/auditLog`), orderBy('timestamp', 'desc'), where('timestamp', '>=', startOfDay), where('timestamp', '<=', endOfDay));
+                const logsSnapshot = await getDocs(q);
+                const filteredLogs = logsSnapshot.docs.map(doc => doc.data());
+                renderAdminLog(filteredLogs);
+            } else {
+                const allLogsQuery = query(collection(db, `businesses/${BUSINESS_ID}/auditLog`), orderBy('timestamp', 'desc'));
+                const logsSnapshot = await getDocs(allLogsQuery);
+                const allLogs = logsSnapshot.docs.map(doc => doc.data());
+                renderAdminLog(allLogs);
+            }
+        });
+        
+        btnClearData.addEventListener('click', () => {
+            showModal('¡ATENCIÓN! ¿Desea eliminar todos los datos operativos (stock, ventas, conteos)? El Log de Auditoría NO se borrará. Esta acción es irreversible.', true, () => {
+                const password = prompt("Para confirmar la eliminación, ingrese la contraseña de Administrador:");
+                if (password === ADMIN_PASSWORD) {
+                    (async () => {
+                        const collectionsToClear = ['theoreticalStock', 'salesData', 'countData'];
+                        try {
+                            for (const colName of collectionsToClear) {
+                                const colRef = collection(db, `businesses/${BUSINESS_ID}/${colName}`);
+                                const docs = await getDocs(colRef);
+                                const batch = writeBatch(db);
+                                docs.forEach(doc => batch.delete(doc.ref));
+                                await batch.commit();
+                            }
+                            await logAction('Limpieza de Datos', 'SISTEMA', 0, userEmail, 'Se eliminaron todos los datos operativos.');
+                            showToast("Todos los datos del negocio han sido eliminados.", false);
                         } catch (error) {
                             showToast("Error al limpiar los datos.", true);
-                            console.error("Error al limpiar datos:", error);
+                            console.error("Error al limpiar datos del negocio:", error);
                         }
-                    });
+                    })();
+                } else if (password !== null) {
+                    showToast("Contraseña incorrecta. Operación cancelada.", true);
                 }
-            );
+            });
         });
-
-        btnLimpiarLog.addEventListener('click', () => {
-            showConfirmationModal(
-                '¿Está seguro de que desea borrar TODO el log de auditoría? Esta acción es permanente y no se puede deshacer.',
-                () => {
-                    showPasswordModal(async () => {
-                        showToast("Eliminando el log de auditoría...");
-                        const batch = writeBatch(db);
-                        const logColRef = collection(db, `businesses/${BUSINESS_ID}/auditLog`);
-                        try {
-                            const snapshot = await getDocs(logColRef);
-                            snapshot.docs.forEach(doc => batch.delete(doc.ref));
-                            await batch.commit();
-                            showToast("El log de auditoría ha sido eliminado.", false);
-                        } catch (error) {
-                            showToast("Error al limpiar el log de auditoría.", true);
-                            console.error("Error al limpiar el log:", error);
-                        }
-                    });
-                }
-            );
+        
+        // --- INICIALIZACIÓN DE LA APLICACIÓN ---
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                userId = user.uid;
+                userEmail = user.email;
+                BUSINESS_ID = user.email;
+                userIdDisplay.textContent = userEmail;
+                authSection.style.display = 'none';
+                appContent.style.display = 'block';
+                stopFirestoreListeners();
+                startFirestoreListeners();
+            } else {
+                userId = null;
+                userEmail = null;
+                BUSINESS_ID = null;
+                userIdDisplay.textContent = 'No autenticado';
+                authSection.style.display = 'flex';
+                appContent.style.display = 'none';
+                stopFirestoreListeners();
+                theoreticalStock = [];
+                salesData = [];
+                countData = [];
+                auditLog = [];
+                renderDashboard();
+                renderLastMovements();
+            }
         });
-
+        
+        // Llamada inicial para configurar la validación de los inputs
+        setupSkuInputValidation();
     </script>
 </body>
 </html>
