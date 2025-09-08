@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Paleta de Colores Pastel Femenina y Profesional */
+        /* ==================== PALETA DE COLORES ==================== */
         :root {
             --bg-main: #FDF8FA;      /* Rosa muy claro */
             --bg-card: #FFFFFF;
@@ -27,17 +27,72 @@
             --warning: #FDE68A;        /* Amarillo pastel */
             --info: #A5B4FC;          /* Lavanda */
         }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-dark); }
-        .card { background-color: var(--bg-card); border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid var(--border-color); }
-        .table-header th { padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; background-color: var(--bg-main); position: sticky; top: 0; z-index: 10; }
-        .table-cell { padding: 0.75rem 1rem; font-size: 0.875rem; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
-        .badge { display: inline-block; padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 600; border-radius: 9999px; }
+
+        /* ==================== ESTILOS GLOBALES ==================== */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-main); 
+            color: var(--text-dark); 
+        }
+
+        /* ==================== ESTILOS DE COMPONENTES ==================== */
+        .card { 
+            background-color: var(--bg-card); 
+            border-radius: 0.75rem; 
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); 
+            padding: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .table-header th { 
+            padding: 0.75rem 1rem; 
+            text-align: left; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: var(--text-light); 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            background-color: var(--bg-main); 
+            position: sticky; 
+            top: 0; 
+            z-index: 10; 
+        }
+
+        .table-cell { 
+            padding: 0.75rem 1rem; 
+            font-size: 0.875rem; 
+            border-bottom: 1px solid var(--border-color); 
+            white-space: nowrap; 
+        }
+        
+        /* Estilos para los badges de estado */
+        .badge { 
+            display: inline-block; 
+            padding: 0.25rem 0.75rem; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            border-radius: 9999px; 
+        }
         .badge-faltante { background-color: var(--danger); color: #B91C1C; }
         .badge-sobrante { background-color: var(--success); color: #065F46; }
         .badge-cuadrado { background-color: var(--info); color: #3730A3; }
         .badge-pendiente { background-color: var(--warning); color: #92400E; }
         .badge-no-en-catalogo { background-color: #9CA3AF; color: #1F2937; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s; cursor: pointer; border: 1px solid transparent; }
+
+        /* Estilos de botones */
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 0.5rem; 
+            padding: 0.625rem 1.25rem; 
+            border-radius: 0.5rem; 
+            font-weight: 600; 
+            transition: background-color 0.2s; 
+            cursor: pointer; 
+            border: 1px solid transparent; 
+        }
         .btn-primary { background-color: var(--primary); color: white; }
         .btn-secondary { background-color: var(--secondary); color: var(--text-dark); }
         .btn-danger { background-color: var(--danger); color: #991B1B; }
@@ -45,24 +100,102 @@
         .btn-primary:hover:not(:disabled) { background-color: var(--primary-hover); }
         .btn-secondary:hover:not(:disabled) { background-color: var(--secondary-hover); }
         .btn-danger:hover:not(:disabled) { background-color: var(--danger-hover); color: white; }
-        .input-field { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid var(--border-color); border-radius: 0.375rem; transition: border-color 0.2s, box-shadow 0.2s; }
-        .input-field:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px #FBCFE8; }
-        .input-field.invalid { border-color: var(--danger); box-shadow: 0 0 0 2px #FECACA; }
-        #toast { visibility: hidden; min-width: 250px; margin-left: -125px; background-color: #333; color: #fff; text-align: center; border-radius: 0.5rem; padding: 16px; position: fixed; z-index: 100; left: 50%; bottom: 30px; }
-        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        
+        /* Corrección de CSS: Selector más específico para evitar !important */
+        .btn.btn-processing { 
+            background-color: var(--success); 
+            color: #065F46; 
+            cursor: wait; 
+        }
+        .btn.btn-processing i { 
+            animation: fa-spin 1s infinite linear; 
+        }
+
+        /* Estilos de campos de entrada */
+        .input-field { 
+            width: 100%; 
+            padding: 0.5rem 0.75rem; 
+            border: 1px solid var(--border-color); 
+            border-radius: 0.375rem; 
+            transition: border-color 0.2s, box-shadow 0.2s; 
+        }
+        .input-field:focus { 
+            outline: none; 
+            border-color: var(--primary); 
+            box-shadow: 0 0 0 2px #FBCFE8; 
+        }
+        .input-field.invalid { 
+            border-color: var(--danger); 
+            box-shadow: 0 0 0 2px #FECACA; 
+        }
+        
+        /* Estilos del Toast (notificaciones) */
+        #toast { 
+            visibility: hidden; 
+            min-width: 250px; 
+            margin-left: -125px; 
+            background-color: #333; 
+            color: #fff; 
+            text-align: center; 
+            border-radius: 0.5rem; 
+            padding: 16px; 
+            position: fixed; 
+            z-index: 100; 
+            left: 50%; 
+            bottom: 30px; 
+        }
+        #toast.show { 
+            visibility: visible; 
+            animation: fadein 0.5s, fadeout 0.5s 2.5s; 
+        }
         #toast.error { background-color: var(--danger); color: #B91C1C; }
         #toast.success { background-color: var(--success); color: #065F46; }
+
+        /* Animaciones para el Toast */
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-        .btn-processing { background-color: var(--success) !important; color: #065F46 !important; cursor: wait !important; }
-        .btn-processing i { animation: fa-spin 1s infinite linear; }
-        .modal { display: none; position: fixed; z-index: 50; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); justify-content: center; align-items: center; }
-        .modal-content { background-color: #fefefe; margin: auto; padding: 20px; border-radius: 0.5rem; box-shadow: 0 4px 6px -1-px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); width: 90%; max-width: 1024px; text-align: left; }
+
+        /* Estilos del Modal */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 50; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.4); 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .modal-content { 
+            background-color: #fefefe; 
+            margin: auto; 
+            padding: 20px; 
+            border-radius: 0.5rem; 
+            box-shadow: 0 4px 6px -1-px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); 
+            width: 90%; 
+            max-width: 1024px; 
+            text-align: left; 
+        }
+
+        /* Estilos del nuevo módulo de últimos movimientos */
+        .last-movements-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.875rem;
+        }
+        .last-movements-item:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 
 <body class="p-4 sm:p-6 lg:p-8 flex flex-col min-h-screen">
-    
     <main class="flex-grow">
         <div class="max-w-screen-2xl mx-auto">
             
@@ -170,6 +303,12 @@
                         <p class="text-gray-400 mb-4">Ver todos los movimientos registrados.</p>
                         <button id="btn-abrir-log-admin" class="btn btn-secondary w-full">Abrir Log</button>
                     </div>
+
+                    <div class="card xl:col-span-2">
+                        <h2 class="text-xl font-semibold mb-4"><i class="fa-solid fa-clock-rotate-left"></i> Últimos 10 Movimientos</h2>
+                        <div id="last-movements-list" class="space-y-2">
+                            </div>
+                    </div>
                 </div>
 
                 <div class="card mt-6">
@@ -265,10 +404,12 @@
     </div>
     
     <script type="module">
-        // --- 1. CONFIGURACIÓN E INICIALIZACIÓN DE FIREBASE ---
+        // =========================================================================
+        // === 1. CONFIGURACIÓN E INICIALIZACIÓN DE FIREBASE =======================
+        // =========================================================================
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, collection, onSnapshot, setDoc, addDoc, query, orderBy, serverTimestamp, writeBatch, getDocs, where, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, collection, onSnapshot, setDoc, addDoc, query, orderBy, serverTimestamp, writeBatch, getDocs, where, runTransaction, limit } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         
         const firebaseConfig = {
             apiKey: "AIzaSyAzGc3KVQFYIoQ7W_WZAj585AbUpiU5HUI",
@@ -282,20 +423,26 @@
         const db = getFirestore(app);
         const auth = getAuth(app);
 
-        // --- 2. CONSTANTES GLOBALES Y DE CONFIGURACIÓN ---
+        // =========================================================================
+        // === 2. CONSTANTES Y CONFIGURACIÓN =======================================
+        // =========================================================================
         let BUSINESS_ID = null;
         const ADMIN_PASSWORD = '10234567'; // Contraseña para operaciones peligrosas
         const LOG_PASSWORD = '220286'; // Contraseña para ver el log
 
-        // --- 3. ESTADO DE LA APLICACIÓN Y DATOS ---
-        let theoreticalStock = [], salesData = [], countData = [], auditLog = [];
+        // =========================================================================
+        // === 3. ESTADO DE LA APLICACIÓN Y DATOS ==================================
+        // =========================================================================
+        let theoreticalStock = [], salesData = [], countData = [];
         let userEmail = null;
         let counterName = 'N/A';
         let unsubscribes = [];
         let fullAdminLogData = [];
         let memoizedDashboardData = [];
 
-        // --- 4. SELECCIÓN DE ELEMENTOS DEL DOM ---
+        // =========================================================================
+        // === 4. SELECCIÓN DE ELEMENTOS DEL DOM ===================================
+        // =========================================================================
         const authSection = document.getElementById('auth-section');
         const appContent = document.getElementById('app-content');
         const userIdDisplay = document.getElementById('user-id-display');
@@ -343,8 +490,11 @@
         const modalMessage = document.getElementById('modal-message');
         const modalButtons = document.getElementById('modal-buttons');
         const btnClearData = document.getElementById('btn-limpiar-datos');
+        const lastMovementsList = document.getElementById('last-movements-list');
 
-        // --- 5. FUNCIONES DE UTILIDAD REUTILIZABLES ---
+        // =========================================================================
+        // === 5. FUNCIONES DE UTILIDAD ============================================
+        // =========================================================================
         const showToast = (message, isError = false) => {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -429,8 +579,9 @@
         
         const normalizeSku = (sku) => (typeof sku === 'string' ? sku.trim().toUpperCase() : '');
 
-        // --- 6. LÓGICA DEL NEGOCIO Y CÁLCULO ---
-        
+        // =========================================================================
+        // === 6. LÓGICA DEL NEGOCIO Y CÁLCULO =====================================
+        // =========================================================================
         class SkuData {
             constructor(sku) { this.sku = sku; this.ventas = []; this.conteos = []; }
             getLatestConteo() {
@@ -561,24 +712,68 @@
                 </tr>
             `).join('');
         };
-
-        // --- 7. LÓGICA DE FIREBASE Y SINCRONIZACIÓN ---
-        const startFirestoreListeners = () => {
-            if (!BUSINESS_ID) return;
-            const errHandler = (err) => { console.error(err); showToast("Error de sincronización.", true); };
-            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/theoreticalStock`), snap => { theoreticalStock = snap.docs.map(d => ({ id: d.id, ...d.data() })); debouncedRender(); }, errHandler));
-            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/salesData`), snap => { salesData = snap.docs.map(d => ({ id: d.id, ...d.data() })); debouncedRender(); }, errHandler));
-            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/countData`), snap => { countData = snap.docs.map(d => ({ id: d.id, ...d.data() })); debouncedRender(); }, errHandler));
-        };
         
-        const stopFirestoreListeners = () => { unsubscribes.forEach(unsub => unsub()); unsubscribes = []; };
-        
-        const logAction = async (type, sku, quantity, responsible, detail = '') => {
-            if (!BUSINESS_ID) return;
-            try { await addDoc(collection(db, `businesses/${BUSINESS_ID}/auditLog`), { type, sku, quantity, responsible, detail, timestamp: serverTimestamp() }); } catch (e) { console.error("Log error:", e); }
-        };
+        /* === INICIO: Nueva función renderLastMovements mejorada y robusta === */
+        const renderLastMovements = (movements) => {
+            lastMovementsList.innerHTML = ''; // Limpiar la lista
+            if (movements.length === 0) {
+                lastMovementsList.innerHTML = `<div class="text-center text-gray-400">No hay movimientos recientes.</div>`;
+                return;
+            }
+            // Objeto de configuración para estilos, más limpio que una cadena de if/else
+            const movementStyles = {
+                'Venta': { icon: 'fa-solid fa-cart-shopping', color: 'text-blue-600' },
+                'Conteo Físico': { icon: 'fa-solid fa-boxes-stacked', color: 'text-purple-600' },
+                'Anulación': { icon: 'fa-solid fa-ban', color: 'text-red-600' },
+                'Corrección Admin': { icon: 'fa-solid fa-square-pen', color: 'text-gray-600' },
+                'Limpieza de Datos': { icon: 'fa-solid fa-square-pen', color: 'text-gray-600' },
+                'Reposición (Físico)': { icon: 'fa-solid fa-truck', color: 'text-teal-600' },
+                'Reposición (Teórico)': { icon: 'fa-solid fa-truck', color: 'text-teal-600' },
+                'Catálogo': { icon: 'fa-solid fa-file-import', color: 'text-green-600' }
+            };
 
-        // --- 8. MANEJADORES DE EVENTOS ---
+            movements.forEach(log => {
+                const item = document.createElement('div');
+                item.className = 'last-movements-item flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1';
+
+                const logDate = log.timestamp.toDate();
+                // Formato de fecha robusto con Intl.DateTimeFormat
+                const datePart = new Intl.DateTimeFormat('es-AR').format(logDate);
+                const timePart = new Intl.DateTimeFormat('es-AR', { hour: '2-digit', minute: '2-digit' }).format(logDate);
+
+                // Usa el mapa para obtener el estilo, o usa un por defecto
+                let style = movementStyles[log.type] || { icon: 'fa-solid fa-arrow-up', color: 'text-green-600' };
+
+                // Ajusta el icono y color si la cantidad es negativa
+                if (log.quantity < 0) {
+                    style = { icon: 'fa-solid fa-arrow-down', color: 'text-red-600' };
+                }
+                
+                const typeLabel = log.type || 'Movimiento';
+                const quantityText = log.quantity != null ? (log.quantity > 0 ? '+' : '') + log.quantity : '-';
+
+                item.innerHTML = `
+                    <div class="flex flex-wrap gap-2 items-center flex-grow">
+                        <span class="font-semibold text-sm">${typeLabel}</span>
+                        <span class="text-gray-600 text-sm">SKU: <span class="font-mono font-semibold">${log.sku || '-'}</span></span>
+                        <span class="text-gray-600 text-sm">Responsable: <span class="font-semibold">${log.responsible || '-'}</span></span>
+                        ${log.detail ? `<span class="text-gray-500 text-xs italic">Detalle: ${log.detail}</span>` : ''}
+                    </div>
+                    <div class="text-right min-w-[100px]">
+                        <span class="font-semibold ${style.color}">
+                            <i class="${style.icon}"></i> ${quantityText}
+                        </span>
+                        <div class="text-xs text-gray-400">${datePart} ${timePart}</div>
+                    </div>
+                `;
+                lastMovementsList.appendChild(item);
+            });
+        };
+        /* === FIN: Nueva función renderLastMovements mejorada y robusta === */
+
+        // =========================================================================
+        // === 7. MANEJADORES DE EVENTOS ===========================================
+        // =========================================================================
         const debouncedRender = debounce(() => { renderDashboard(getDashboardData()); }, 250);
 
         btnLogin.addEventListener('click', () => signInWithEmailAndPassword(auth, authEmailInput.value, authPasswordInput.value).catch(() => showToast("Error de autenticación.", true)));
@@ -720,33 +915,61 @@
             }
         });
 
+        /* === Código de corrección de Admin mejorado con transacciones === */
         formCorrectionAdmin.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitButton = e.submitter;
             const sku = normalizeSku(correctionSkuInput.value);
             const quantity = Number(correctionQuantityInput.value);
             const name = correctionAdminNameInput.value.trim();
+
             if (!validateSku(sku) || quantity < 0 || !name) return showToast("Datos inválidos.", true);
+
             const password = await requestPassword();
-            if (password !== ADMIN_PASSWORD) { if (password !== null) showToast("Contraseña incorrecta.", true); return; }
+            if (password !== ADMIN_PASSWORD) {
+                if (password !== null) showToast("Contraseña incorrecta.", true);
+                return;
+            }
+
             toggleButton(submitButton, false);
             submitButton.classList.add('btn-processing');
+
             try {
                 const countDocRef = doc(db, `businesses/${BUSINESS_ID}/countData`, sku);
-                const now = serverTimestamp();
-                await setDoc(countDocRef, { 
-                    sku, 
-                    quantity, 
-                    type: 'conteo', 
-                    counter: name, 
-                    firstTimestamp: now, 
-                    lastTimestamp: now 
+                
+                // Usamos una transacción para leer y escribir de forma segura y atómica
+                await runTransaction(db, async (transaction) => {
+                    const countDoc = await transaction.get(countDocRef);
+                    const now = serverTimestamp();
+
+                    if (countDoc.exists()) {
+                        // Si el documento existe, solo actualizamos los campos necesarios
+                        // Se preserva el 'firstTimestamp' original.
+                        transaction.update(countDocRef, {
+                            quantity: quantity,
+                            counter: name,
+                            lastTimestamp: now
+                        });
+                    } else {
+                        // Si no existe, lo creamos estableciendo ambas fechas
+                        transaction.set(countDocRef, {
+                            sku,
+                            quantity,
+                            type: 'conteo',
+                            counter: name,
+                            firstTimestamp: now, // Primera vez que se cuenta
+                            lastTimestamp: now
+                        });
+                    }
                 });
+
                 await logAction('Corrección Admin', sku, quantity, name, `Stock Físico TOTAL fijado a ${quantity}.`);
                 showToast("Stock físico corregido.");
                 formCorrectionAdmin.reset();
-            } catch (err) { showToast("Error al corregir.", true); console.error(err); }
-            finally {
+            } catch (err) {
+                showToast("Error al corregir.", true);
+                console.error(err);
+            } finally {
                 toggleButton(submitButton, true);
                 submitButton.classList.remove('btn-processing');
             }
@@ -888,10 +1111,37 @@
             });
         });
 
-        // --- 9. INICIALIZACIÓN DE LA APLICACIÓN ---
+        // =========================================================================
+        // === 8. LÓGICA DE FIREBASE Y SINCRONIZACIÓN ==============================
+        // =========================================================================
+        const startFirestoreListeners = () => {
+            if (!BUSINESS_ID) return;
+            const errHandler = (err) => { console.error(err); showToast("Error de sincronización.", true); };
+            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/theoreticalStock`), snap => { theoreticalStock = snap.docs.map(d => ({ id: d.id, ...d.data() })); debouncedRender(); }, errHandler));
+            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/salesData`), snap => { salesData = snap.docs.map(d => ({ id: d.id, ...d.data() })); debouncedRender(); }, errHandler));
+            unsubscribes.push(onSnapshot(collection(db, `businesses/${BUSINESS_ID}/countData`), snap => { countData = snap.docs.map(d => ({ id: d.id, ...d.data() })); debouncedRender(); }, errHandler));
+            
+            // Listener para los últimos 10 movimientos
+            const lastMovementsQuery = query(collection(db, `businesses/${BUSINESS_ID}/auditLog`), orderBy('timestamp', 'desc'), limit(10));
+            unsubscribes.push(onSnapshot(lastMovementsQuery, snap => {
+                const movements = snap.docs.map(d => d.data());
+                renderLastMovements(movements);
+            }, errHandler));
+        };
+        
+        const stopFirestoreListeners = () => { unsubscribes.forEach(unsub => unsub()); unsubscribes = []; };
+        
+        const logAction = async (type, sku, quantity, responsible, detail = '') => {
+            if (!BUSINESS_ID) return;
+            try { await addDoc(collection(db, `businesses/${BUSINESS_ID}/auditLog`), { type, sku, quantity, responsible, detail, timestamp: serverTimestamp() }); } catch (e) { console.error("Log error:", e); }
+        };
+
+        // =========================================================================
+        // === 9. INICIALIZACIÓN DE LA APLICACIÓN ==================================
+        // =========================================================================
         onAuthStateChanged(auth, user => {
             stopFirestoreListeners();
-            [theoreticalStock, salesData, countData, auditLog] = [[], [], [], []];
+            [theoreticalStock, salesData, countData] = [[], [], []];
             if (user) {
                 BUSINESS_ID = user.email; userEmail = user.email;
                 userIdDisplay.textContent = user.email;
